@@ -115,7 +115,7 @@ async function SearchPics(URL) {
     }
 
     if (!/\S/.test(text) && tags == "&tags=" || /\S/.test(text) && tags != "&tags=") {
-        h.innerText = "Both the search and tag box can't be empty";
+        h.innerText = "Both the search and tags box can't be empty";
         h.style.display = "inline";
         document.getElementsByClassName("page")[1].style.display = "none";
         pageNum.style.display = "none";
