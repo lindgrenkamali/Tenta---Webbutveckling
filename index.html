@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body style="margin: 0;">
+    
+    <header>
+        <h1>Flickr search engine</h1>
+    </header>
+
+    <nav>
+        <label for="pages">Pictures per page</label>
+        <select name="pages" id="per_page">
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+            <option value="40">40</option>
+            <option value="50">50</option>
+            <option value="60">60</option>
+            <option value="70">70</option>
+            <option value="80">80</option>
+            <option value="90">90</option>
+            <option value="100">100</option>
+
+        </select>
+        
+    </nav>
+
+    <div class="tags">
+        <input type="text" id="tags" placeholder="tags">
+    </div>
+
+    <div class="search">
+
+        
+        <input type="text" id="input" placeholder="search">
+
+        <button type="button" id="srcButton">
+            Search
+        </button>
+    </div>
+
+    <div>
+        <h1 id="error"></h1>
+
+    </div>
+   
+    <figure id="pics">
+    </figure>
+
+    <div id="show" class="pages">
+        <button style="display: none;" class="page" id="buttonBack">Back</button>
+        <button style="display: none;" class="page" id="buttonNext">Next</button>
+        
+        <button style="display: none;" class="page" id="pageSubmit">Submit</button>
+
+        <p id="pageNumber"></p>
+    </div>
+
+    <footer>
+        <p>Made by David Lindgren Kamali</p>
+    </footer>
+
+</body>
+<script defer src="base.js"></script>
+
+</html>
