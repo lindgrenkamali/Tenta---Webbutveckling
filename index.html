@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Webbutveckling Tenta</title>
 </head>
 
 <body style="margin: 0;">
-    
+
     <header>
         <h1>Flickr search engine</h1>
     </header>
@@ -30,7 +30,7 @@
             <option value="100">100</option>
 
         </select>
-        
+
     </nav>
 
     <div class="tags">
@@ -39,34 +39,31 @@
 
     <div class="search">
 
-        
+
         <input type="text" id="input" placeholder="search">
 
         <button type="button" id="srcButton">
-            Search
+            Submit
         </button>
+        
     </div>
 
-    <div>
+    <div id="message">
         <h1 id="error"></h1>
 
     </div>
-   
+
     <figure id="pics">
     </figure>
 
     <div id="show" class="pages">
         <button style="display: none;" class="page" id="buttonBack">Back</button>
         <button style="display: none;" class="page" id="buttonNext">Next</button>
-        
         <button style="display: none;" class="page" id="pageSubmit">Submit</button>
+        
 
         <p id="pageNumber"></p>
     </div>
-
-    <footer>
-        <p>Made by David Lindgren Kamali</p>
-    </footer>
 
 </body>
 <script defer src="base.js"></script>

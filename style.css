@@ -1,69 +1,64 @@
-.search{
+body {
+
+    background-image: url('https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+header h1 {
+    font-size: 40px;
+
+    margin: 5px;
+}
+
+nav {
+    margin: 10px 0 40px 10px;
+}
+
+#tags {
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    width: 192px;
+}
+
+.search {
     display: flex;
     margin-right: auto;
     margin-left: auto;
     width: 200px;
 }
 
-#error{
-    margin: 50px;
+#message {
+
     text-align: center;
-    
+    font-size: 10px;
+    margin: 40px;
 }
 
-footer p {
-    text-align: center;
-}
-
-#tags{
-    display: flex;
-    margin-right: auto;
-    margin-left: auto;
-    width: 200px;
-}
-
-.pages{
-
-    width: 100px;
-    bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-figure{
+figure {
     display: table-cell;
     vertical-align: middle;
     width: 10%;
     background-color: white;
 }
 
+img {
 
-body{
-    
-background-image: url('https://images.unsplash.com/photo-1534131707746-25d604851a1f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
-background-repeat: no-repeat;
-background-size: cover;
-background-attachment: fixed;
-}
-
-img{
- 
-margin: 4px 4px 4px 4px;
+    margin: 4px 4px 4px 4px;
 
 }
 
-header{
-    padding-top: 0;
-    
-
+.pages {
+text-align: center;
+    width: 100px;
+    bottom: 0;
+    margin: auto;
+    font-size: 20px;
 }
 
-header h1{
-font-size: 50px;}
-
-
-
-#lightbox{
+#lightbox {
     display: none;
     position: fixed;
     z-index: auto;
@@ -71,7 +66,7 @@ font-size: 50px;}
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .8);
-    
+
 }
 
 #lightbox.show {
@@ -80,7 +75,7 @@ font-size: 50px;}
     align-items: center;
 }
 
-#lightbox img{
+#lightbox img {
 
-    width: 60%;
+    max-width: 80%;
 }

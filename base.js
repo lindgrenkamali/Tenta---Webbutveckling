@@ -1,27 +1,32 @@
 let page = 1;
-let h = document.getElementById("error");
-let firstSearch = false;
-let text ="";
-let tags ="";
+const h = document.getElementById("error");
+let text = "";
+let tags = "";
 let pageNum = document.getElementById("pageNumber");
 
-let picturePerPage;
+let picturePerPage = 10;
 
 const protocol = "https://";
 
-document.getElementById("srcButton").addEventListener("click", function () {
-    CreateSearchURL();
+document.getElementById("srcButton").addEventListener("click", async function () {
+    await CreateSearchURL();
 });
-document.getElementById("per_page").addEventListener("click", function () {
-    if (document.getElementById("per_page").value != picturePerPage) {
-        CreateSearchURL();
+
+
+document.getElementById("per_page").addEventListener("click", async function () {
+
+    text = document.getElementById("input").value;
+
+    tags = SearchTags();
+    
+    if (document.getElementById("per_page").value != picturePerPage && /\S/.test(text) && tags == "&tags=" || document.getElementById("per_page").value != picturePerPage && !/\S/.test(text) && tags != "&tags=") {
+        await CreateSearchURL();
     }
 
 });
-document.getElementById("pageSubmit").addEventListener("click", function () {
-    CreateSearchURL();
+document.getElementById("pageSubmit").addEventListener("click", async function () {
+    await CreateSearchURL();
 });
-
 
 
 function BackVisible() {
@@ -109,72 +114,69 @@ async function SearchPics(URL) {
         currentPics.removeChild(currentPics.firstChild);
     }
 
-    if (text == "" && tags == "&tags=") {
-
-        h.innerText = "Both your search boxes can't be blank!";
-        
+    if (!/\S/.test(text) && tags == "&tags=" || /\S/.test(text) && tags != "&tags=") {
+        h.innerText = "Both the search and tag box can't be empty";
         h.style.display = "inline";
-        BackVisible();
         document.getElementsByClassName("page")[1].style.display = "none";
         pageNum.style.display = "none";
+    } else {
 
-    }
-    
-
-    else {
-
-        console.log(text + tags);
 
         if (data.photos.total == 0) {
             h.innerText = "There are no pictures referred to your specified search";
             h.style.display = "inline";
             document.getElementsByClassName("page")[1].style.display = "none";
             pageNum.style.display = "none";
+        } else {
+            h.style.display = "none"
+            BackVisible();
+
+
+            for (let pics of data.photos.photo) {
+                const serverID = pics.server;
+                const photoID = pics.id;
+                const secret = pics.secret;
+                const farm = pics.farm;
+                const size = "q";
+                let img = document.createElement("img");
+                img.src = `https://farm${farm}.staticflickr.com/${serverID}/${photoID}_${secret}_${size}.jpg`;
+                const src = document.getElementById("pics");
+                img.addEventListener("click", x => {
+                    lightbox.classList.add("show");
+                    let image = document.createElement("img");
+
+                    image.src = img.src.slice(0, -6);
+                    image.src += ".jpg";
+
+                    while (lightbox.firstChild) {
+                        lightbox.removeChild(lightbox.firstChild);
+                    }
+                    lightbox.appendChild(image);
+                })
+                src.appendChild(img);
+
+            }
+
+            PicPages(data);
+
+            pageNum = document.getElementById("pageNumber");
+            pageNum.style.display = "block";
+            pageNum.innerHTML = "Page:" + page;
         }
-
-       else{ h.style.display = "none"
-        BackVisible();
-    
-
-        for (let pics of data.photos.photo) {
-            const serverID = pics.server;
-            const photoID = pics.id;
-            const secret = pics.secret;
-            const farm = pics.farm;
-            const size = "q";
-            let img = document.createElement("img");
-            img.src = `https://farm${farm}.staticflickr.com/${serverID}/${photoID}_${secret}_${size}.jpg`;
-            const src = document.getElementById("pics");
-            img.addEventListener("click", x => {
-                lightbox.classList.add("show");
-                let image = document.createElement("img");
-
-                image.src = img.src.slice(0, -6);
-                image.src += ".jpg";
-                console.log(image.src);
-                while (lightbox.firstChild) {
-                    lightbox.removeChild(lightbox.firstChild);
-                }
-                lightbox.appendChild(image);
-            })
-            src.appendChild(img);
-
-        }
-
-        PicPages(data);
-        firstSearch = true;
-        pageNum = document.getElementById("pageNumber");
-        pageNum.style.display = "block";
-        pageNum.innerHTML = "Page:" + page;
     }
-}}
+}
 
 
 function SearchTags() {
 
-    let tags = document.getElementById("tags").value + "";
+    let tag = document.getElementById("tags").value + "";
 
-    const splitTags = tags.split(" ");
+    if (!/\S/.test(tag)) {
+
+        return "&tags=";
+    }
+
+    const splitTags = tag.split(" ");
 
     let comTag = "&tags="
 
